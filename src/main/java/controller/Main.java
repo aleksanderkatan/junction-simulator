@@ -1,6 +1,11 @@
 package controller;
 
+import model.Direction;
+import model.JunctionManager;
 import org.apache.commons.cli.*;
+
+import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,5 +26,20 @@ public class Main {
         } catch (ParseException | IllegalArgumentException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static void mainLoop(List<Map<String, String>> events, JunctionManager junctionManager) {
+        for (var event: events) {
+            switch (event.get("type")) {
+                case "addVehicle" -> junctionManager.addVehicle(
+                        event.get("vehicleId"),
+                        Direction.fromString(event.get("startRoad")),
+                        Direction.fromString(event.get("endRoad"))
+                );
+                case "step" -> junctionManager.step();
+                default -> System.out.println("Unknown event type");
+            }
+        }
+
     }
 }
