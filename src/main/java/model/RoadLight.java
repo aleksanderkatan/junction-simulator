@@ -21,19 +21,23 @@ public class RoadLight {
         state = stateQueue.remove();
     }
 
-    public boolean isQueued() {
+    public boolean isChangeBlocked() {
         return !stateQueue.isEmpty();
     }
 
+    public RoadLightColor getState() {
+        return state;
+    }
+
     public void turnRed() {
-        if (isQueued() || state == RED) {
+        if (isChangeBlocked() || state == RED) {
             return;
         }
         stateQueue = new LinkedList<>(Arrays.asList(YELLOW, RED));
     }
 
     public void turnGreen() {
-        if (isQueued() || state == RED) {
+        if (isChangeBlocked() || state == RED) {
             return;
         }
         stateQueue = new LinkedList<>(Arrays.asList(RED_YELLOW, GREEN));
