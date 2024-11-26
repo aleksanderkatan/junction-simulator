@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 public class EventParser {
-    public static List<Map<String,String>> parse(String jsonString) {
+    public static List<Map<String,String>> parseEvents(String jsonString) {
         var result = new ArrayList<Map<String, String>>();
 
         JSONObject jsonObject = new JSONObject(jsonString);
         var jsonCommandsArray = jsonObject.getJSONArray("commands");
 
-        // jsonCommandsArray is not Iterable (the objects might be of different types)
+        // jsonCommandsArray is not Iterable
         for (int i = 0; i < jsonCommandsArray.length(); i++) {
             result.add(parseFlatObject(jsonCommandsArray.getJSONObject(i)));
         }

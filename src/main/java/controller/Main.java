@@ -1,8 +1,8 @@
 package controller;
 
+import controller.arguments.ArgumentsParser;
 import model.Direction;
 import model.JunctionManager;
-import org.apache.commons.cli.*;
 
 import java.util.List;
 import java.util.Map;
@@ -10,22 +10,13 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         System.out.println("The application started running.");
-        Options options = new Options();
-        options.addOption("h", "head", false, "Enable junction visualization");
 
-        CommandLineParser parser = new DefaultParser();
-        try {
-            CommandLine cmd = parser.parse(options, args);
-            boolean isHeaded = cmd.hasOption("h");
-            String[] remainingArgs = cmd.getArgs();
-            if (remainingArgs.length != 2) {
-                throw new IllegalArgumentException("Exactly 2 arguments required");
-            }
-            System.out.printf("Reading input from %s, the output will be stored in %s%n", remainingArgs[0], remainingArgs[1]);
+        ArgumentsParser argumentsParser = ArgumentsParser.parseFromStringArr(args);
+        System.out.printf("Reading input from %s, the output will be stored in %s%n",
+                argumentsParser.inputPath().toString(), argumentsParser.outputPath());
 
-        } catch (ParseException | IllegalArgumentException e) {
-            throw new RuntimeException(e);
-        }
+
+
     }
 
     private static void mainLoop(List<Map<String, String>> events, JunctionManager junctionManager) {
