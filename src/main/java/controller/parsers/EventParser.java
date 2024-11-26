@@ -1,4 +1,4 @@
-package controller.JSON;
+package controller.parsers;
 
 import org.json.JSONObject;
 

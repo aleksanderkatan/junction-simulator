@@ -1,5 +1,5 @@
 package model;
 
-public enum RoadLightState {
+public enum RoadLightColor {
     RED, RED_YELLOW, GREEN, YELLOW
 }

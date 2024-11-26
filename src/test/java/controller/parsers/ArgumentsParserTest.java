@@ -1,5 +1,6 @@
-package controller.arguments;
+package controller.parsers;
 
+import controller.parsers.ArgumentsParser;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;

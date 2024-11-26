@@ -1,11 +1,11 @@
 package controller;
 
-import controller.JSON.EventParser;
-import controller.arguments.ArgumentsParser;
+import controller.parsers.EventParser;
+import controller.parsers.ArgumentsParser;
 import model.Car;
 import model.Direction;
-import model.algorithm.JunctionManagingAlgorithm;
-import model.algorithm.starvePreventing.StarvePreventingAlgorithm;
+import model.JunctionManagingAlgorithm;
+import model.starvePreventing.StarvePreventingAlgorithm;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

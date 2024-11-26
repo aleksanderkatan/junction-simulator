@@ -1,5 +1,6 @@
-package controller.JSON;
+package controller.parsers;
 
+import controller.parsers.EventParser;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 

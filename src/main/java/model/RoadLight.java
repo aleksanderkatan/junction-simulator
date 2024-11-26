@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import static model.RoadLightState.*;
+import static model.RoadLightColor.*;
 
 public class RoadLight {
-    private RoadLightState state;
-    private Queue<RoadLightState> stateQueue;
+    private RoadLightColor state;
+    private Queue<RoadLightColor> stateQueue;
 
     public RoadLight() {
         state = RED;

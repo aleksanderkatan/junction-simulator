@@ -1,8 +1,8 @@
-package model.algorithm.starvePreventing;
+package model.starvePreventing;
 
 import model.Car;
 import model.Direction;
-import model.algorithm.JunctionManagingAlgorithm;
+import model.JunctionManagingAlgorithm;
 
 import java.util.List;
 

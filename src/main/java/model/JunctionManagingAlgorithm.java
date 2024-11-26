@@ -1,4 +1,4 @@
-package model.algorithm;
+package model;
 
 import model.Car;
 import model.Direction;

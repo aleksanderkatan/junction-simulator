@@ -1,4 +1,4 @@
-package controller.arguments;
+package controller.parsers;
 
 import org.apache.commons.cli.*;
 
