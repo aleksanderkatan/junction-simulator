@@ -5,11 +5,11 @@ import model.*;
 import java.util.List;
 
 public class CyclicAlgorithm implements JunctionManagingAlgorithm {
-    private final JunctionRoadLightsState roadLights;
+    private final JunctionRoadLights roadLights;
     private final JunctionCarsState cars;
     private final CyclicCounter cyclicCounter;
 
-    public CyclicAlgorithm(JunctionRoadLightsState roadLights, JunctionCarsState cars, CyclicCounter cyclicCounter) {
+    public CyclicAlgorithm(JunctionRoadLights roadLights, JunctionCarsState cars, CyclicCounter cyclicCounter) {
         this.roadLights = roadLights;
         this.cars = cars;
         this.cyclicCounter = cyclicCounter;
