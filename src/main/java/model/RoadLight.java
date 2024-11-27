@@ -42,4 +42,12 @@ public class RoadLight {
         }
         stateQueue = new LinkedList<>(Arrays.asList(RED_YELLOW, GREEN));
     }
+
+    public void switchColor() {
+        if (state == RED) {
+            turnGreen();
+        } else {
+            turnRed();
+        }
+    }
 }

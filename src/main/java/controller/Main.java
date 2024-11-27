@@ -1,11 +1,11 @@
 package controller;
 
 import controller.parsers.EventParser;
-import controller.parsers.ArgumentsParser;
+import controller.parsers.Arguments;
 import model.Car;
 import model.Direction;
 import model.JunctionManagingAlgorithm;
-import model.starvePreventing.StarvePreventingAlgorithm;
+import model.JunctionManagingAlgorithmFactory;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -18,26 +18,27 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Starting the application.");
-        ArgumentsParser argumentsParser = ArgumentsParser.parseFromStringArr(args);
+        Arguments arguments = Arguments.parseFromStringArr(args);
 
-        System.out.printf("Reading input from %s.%n", argumentsParser.inputPath().toString());
-        String json = readFile(argumentsParser.inputPath());
+        System.out.printf("Reading input from %s.%n", arguments.inputPath().toString());
+        String json = readFile(arguments.inputPath());
 
         System.out.println("Parsing the json string.");
         var events = EventParser.parseEvents(json);
 
         System.out.println("Entering the main loop.");
-        JunctionManagingAlgorithm algorithm = new StarvePreventingAlgorithm();
-        var result = mainLoop(events, algorithm);
+        JunctionManagingAlgorithm algorithm = JunctionManagingAlgorithmFactory.produceCyclic();
+        var result = mainLoop(events, algorithm, arguments.isFlushing());
 
         System.out.println("Converting the output to JSON.");
         // TODO: implement
 
-        System.out.printf("Saving the output to %s.%n", argumentsParser.outputPath());
+        System.out.printf("Saving the output to %s.%n", arguments.outputPath());
         // TODO: implement
     }
 
-    private static List<List<Car>> mainLoop(List<Map<String, String>> events, JunctionManagingAlgorithm junctionManagingAlgorithm) {
+    private static List<List<Car>> mainLoop(List<Map<String, String>> events,
+                                            JunctionManagingAlgorithm junctionManagingAlgorithm, boolean isFlushing) {
         List<List<Car>> result = new ArrayList<>();
         for (var event: events) {
             switch (event.get("type")) {
@@ -48,6 +49,11 @@ public class Main {
                 );
                 case "step" -> result.add(junctionManagingAlgorithm.step());
                 default -> System.out.println("Unknown event type");
+            }
+        }
+        if (isFlushing) {
+            while (!junctionManagingAlgorithm.isEmpty()) {
+                result.add(junctionManagingAlgorithm.step());
             }
         }
         return result;

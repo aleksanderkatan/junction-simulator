@@ -14,6 +14,12 @@ public class JunctionRoadLightsState {
         }
     }
 
+    public void switchLights() {
+        for (var roadLight : roadLights.values()) {
+            roadLight.switchColor();
+        }
+    }
+
     public Map<Direction, RoadLightColor> getRoadLights() {
         return roadLights.entrySet().stream()
                 .collect(Collectors.toMap(

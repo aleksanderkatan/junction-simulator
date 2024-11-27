@@ -76,4 +76,13 @@ public class JunctionCarsState {
 
         return carsThatDrive;
     }
+
+    public boolean isEmpty() {
+        for (var queue : carsWaiting.values()) {
+            if (!queue.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
