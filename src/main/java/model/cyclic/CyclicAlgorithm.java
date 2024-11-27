@@ -4,15 +4,15 @@ import model.*;
 
 import java.util.List;
 
-public class Cyclic implements JunctionManagingAlgorithm {
+public class CyclicAlgorithm implements JunctionManagingAlgorithm {
     private final JunctionRoadLightsState roadLights;
     private final JunctionCarsState cars;
-    private final Counter counter;
+    private final CyclicCounter cyclicCounter;
 
-    public Cyclic(JunctionRoadLightsState roadLights, JunctionCarsState cars, Counter counter) {
+    public CyclicAlgorithm(JunctionRoadLightsState roadLights, JunctionCarsState cars, CyclicCounter cyclicCounter) {
         this.roadLights = roadLights;
         this.cars = cars;
-        this.counter = counter;
+        this.cyclicCounter = cyclicCounter;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class Cyclic implements JunctionManagingAlgorithm {
         var carsDriving = cars.step(roadLights.getRoadLights());
         roadLights.step();
 
-        if (counter.step()) {
+        if (cyclicCounter.step()) {
             roadLights.switchLights();
         }
 

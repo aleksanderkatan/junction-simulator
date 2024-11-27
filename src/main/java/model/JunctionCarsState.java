@@ -2,6 +2,8 @@ package model;
 
 import java.util.*;
 
+import static model.Direction.*;
+
 public class JunctionCarsState {
     private final Map<Direction, Queue<Car>> carsWaiting;
 
@@ -77,12 +79,15 @@ public class JunctionCarsState {
         return carsThatDrive;
     }
 
+    public int northSouthCarsCount() {
+        return carsWaiting.get(NORTH).size() + carsWaiting.get(SOUTH).size();
+    }
+
+    public int eastWestCarsCount() {
+        return carsWaiting.get(EAST).size() + carsWaiting.get(WEST).size();
+    }
+
     public boolean isEmpty() {
-        for (var queue : carsWaiting.values()) {
-            if (!queue.isEmpty()) {
-                return false;
-            }
-        }
-        return true;
+        return northSouthCarsCount() + eastWestCarsCount() == 0;
     }
 }

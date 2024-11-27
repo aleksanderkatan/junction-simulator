@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CounterTest {
+class CyclicAlgorithmCounterTest {
     @Test
     void ticksAtCorrectIntervals() {
-        var counter = new Counter(3);
+        var counter = new CyclicCounter(3);
 
         assertFalse(counter.step());
         assertFalse(counter.step());

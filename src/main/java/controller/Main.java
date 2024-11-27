@@ -28,7 +28,7 @@ public class Main {
         var events = EventParser.parseEvents(json);
 
         System.out.println("Entering the main loop.");
-        JunctionManagingAlgorithm algorithm = JunctionManagingAlgorithmFactory.produceCyclic();
+        JunctionManagingAlgorithm algorithm = JunctionManagingAlgorithmFactory.produceIntensityOptimized();
         var result = mainLoop(events, algorithm, arguments.isFlushing());
 
         System.out.println("Converting the output to JSON string.");
@@ -49,7 +49,7 @@ public class Main {
                         Direction.fromString(event.get("endRoad"))
                 );
                 case "step" -> result.add(junctionManagingAlgorithm.step());
-                default -> System.out.println("Unknown event type");
+                default -> System.out.printf("Unknown event type: %s %n", event.get("type"));
             }
         }
         if (isFlushing) {

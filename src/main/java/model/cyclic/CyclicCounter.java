@@ -1,9 +1,9 @@
 package model.cyclic;
 
-public class Counter {
+public class CyclicCounter {
     private final int cycleLength;
     private int timeRemaining;
-    public Counter(int cycleLength) {
+    public CyclicCounter(int cycleLength) {
         this.cycleLength = cycleLength;
         timeRemaining = cycleLength;
     }
