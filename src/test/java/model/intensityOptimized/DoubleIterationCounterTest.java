@@ -64,4 +64,17 @@ class DoubleIterationCounterTest {
         assertTrue(f4);
     }
 
+    @Test
+    void refreshUpdatesCounts() {
+        DoubleIterationCounter counter = new DoubleIterationCounter(1, 2);
+        counter.step();
+        counter.step();
+        counter.step();
+
+        counter.refresh(1, 0);
+
+        assertFalse(counter.hasFinished());
+        assertEquals(Optional.of(NORTH), counter.step());
+    }
+
 }

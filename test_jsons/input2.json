@@ -74,6 +74,73 @@
     },
     {
       "type": "addVehicle",
+      "vehicleId": "S12",
+      "startRoad": "south",
+      "endRoad": "north"
+    },
+    {
+      "type": "addVehicle",
+      "vehicleId": "S13",
+      "startRoad": "south",
+      "endRoad": "north"
+    },
+    {
+      "type": "addVehicle",
+      "vehicleId": "S14",
+      "startRoad": "south",
+      "endRoad": "north"
+    },    {
+      "type": "addVehicle",
+      "vehicleId": "S15",
+      "startRoad": "south",
+      "endRoad": "north"
+    },
+    {
+      "type": "addVehicle",
+      "vehicleId": "S16",
+      "startRoad": "south",
+      "endRoad": "north"
+    },
+    {
+      "type": "addVehicle",
+      "vehicleId": "S17",
+      "startRoad": "south",
+      "endRoad": "north"
+    },    {
+      "type": "addVehicle",
+      "vehicleId": "S18",
+      "startRoad": "south",
+      "endRoad": "north"
+    },    {
+      "type": "addVehicle",
+      "vehicleId": "S19",
+      "startRoad": "south",
+      "endRoad": "north"
+    },    {
+      "type": "addVehicle",
+      "vehicleId": "S20",
+      "startRoad": "south",
+      "endRoad": "north"
+    },
+    {
+      "type": "addVehicle",
+      "vehicleId": "S21",
+      "startRoad": "south",
+      "endRoad": "north"
+    },
+    {
+      "type": "addVehicle",
+      "vehicleId": "S22",
+      "startRoad": "south",
+      "endRoad": "north"
+    },{
+      "type": "addVehicle",
+      "vehicleId": "S23",
+      "startRoad": "south",
+      "endRoad": "north"
+    },
+    {
+      "type": "addVehicle",
       "vehicleId": "W0",
       "startRoad": "west",
       "endRoad": "east"
@@ -89,6 +156,18 @@
       "vehicleId": "W2",
       "startRoad": "west",
       "endRoad": "east"
-    }
+    },
+    {
+      "type": "addVehicle",
+      "vehicleId": "W3",
+      "startRoad": "west",
+      "endRoad": "east"
+    },
+    {
+      "type": "addVehicle",
+      "vehicleId": "W4",
+      "startRoad": "west",
+      "endRoad": "east"
+    },
   ]
 }

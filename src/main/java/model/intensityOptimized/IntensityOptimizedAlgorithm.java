@@ -36,7 +36,7 @@ public class IntensityOptimizedAlgorithm implements JunctionManagingAlgorithm {
         cars.addCar(new Car(vehicleId, startRoad, endRoad));
     }
 
-    public void calculateAndEnqueueLights() {
+    private void calculateAndEnqueueLights() {
         // currently, NORTH and SOUTH are green.
         // find values for how long NORTH should stay green, and how long should EAST stay green after that.
         int northCars = cars.northSouthCarsCount();
