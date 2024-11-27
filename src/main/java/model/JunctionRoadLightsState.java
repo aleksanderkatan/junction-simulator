@@ -1,45 +1,45 @@
 package model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static model.Direction.*;
+import static model.RoadLightColor.*;
 
 
-// This needs refactoring, but I do not have enough time
-// switchLights() does nothing if is called while a switch is already taking place
-// RoadLight is written with assumption that all the lights switch at the same time
-// RoadLight should probably just be inlined in this class
 public class JunctionRoadLightsState {
-    private final Map<Direction, RoadLight> roadLights;
+    private static final List<Map<Direction, RoadLightColor>> lightCycles = List.of(
+            Map.of(NORTH, RED,          EAST, GREEN,        SOUTH, RED,         WEST, GREEN),   // may last multiple steps
+            Map.of(NORTH, RED,          EAST, YELLOW,       SOUTH, RED,         WEST, YELLOW),
+            Map.of(NORTH, RED_YELLOW,   EAST, RED,          SOUTH, RED_YELLOW,  WEST, RED),
+            Map.of(NORTH, GREEN,        EAST, RED,          SOUTH, GREEN,       WEST, RED),     // may last multiple steps
+            Map.of(NORTH, YELLOW,       EAST, RED,          SOUTH, YELLOW,      WEST, RED),
+            Map.of(NORTH, RED,          EAST, RED_YELLOW,   SOUTH, RED,         WEST, RED_YELLOW)
+    );
 
-    public JunctionRoadLightsState() {
-        roadLights = new HashMap<>();
-        for (var direction : Direction.values()) {
-            roadLights.put(direction, new RoadLight());
-        }
-        roadLights.get(NORTH).switchColor();
-        roadLights.get(SOUTH).switchColor();
-    }
+    private static final Set<Integer> stayStates = Set.of(0, 3);
+    private int currentState = 0;
+    private boolean isChanging = false;
+
+    public JunctionRoadLightsState() {}
 
     public void step() {
-        for (var roadLight : roadLights.values()) {
-            roadLight.step();
+        if (isChanging) {
+            currentState = (currentState + 1) % lightCycles.size();
+            if (stayStates.contains(currentState)) {
+                isChanging = false;
+            }
         }
     }
 
     public void switchLights() {
-        for (var roadLight : roadLights.values()) {
-            roadLight.switchColor();
-        }
+        isChanging = true;
     }
 
     public Map<Direction, RoadLightColor> getRoadLights() {
-        return roadLights.entrySet().stream()
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        e -> e.getValue().getState()
-                ));
+        return lightCycles.get(currentState);
     }
 }
