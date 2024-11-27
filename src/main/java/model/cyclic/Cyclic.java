@@ -23,6 +23,7 @@ public class Cyclic implements JunctionManagingAlgorithm {
     @Override
     public List<Car> step() {
         var carsDriving = cars.step(roadLights.getRoadLights());
+        roadLights.step();
 
         if (counter.step()) {
             roadLights.switchLights();

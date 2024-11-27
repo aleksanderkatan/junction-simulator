@@ -7,14 +7,16 @@ import java.nio.file.Path;
 public record Arguments(Path inputPath, Path outputPath, boolean isHeaded, boolean isFlushing) {
     public static Arguments parseFromStringArr(String[] args) {
         Options options = new Options();
-        options.addOption("h", "head", false, "Enable junction visualization (currently unsupported)");
-        options.addOption("f", "flush", true, "Continue the simulation until all cars leave");
+        options.addOption("h", "head", false,
+                "Enable junction visualization (currently unsupported).");
+        options.addOption("f", "no-flush", false,
+                "Halt the simulation after processing events even if there are cars left");
 
         CommandLineParser parser = new DefaultParser();
         try {
             CommandLine cmd = parser.parse(options, args);
             boolean isHeaded = cmd.hasOption("h");
-            boolean isFlushing = cmd.hasOption("f");
+            boolean isFlushing = !cmd.hasOption("f");
             String[] remainingArgs = cmd.getArgs();
             if (remainingArgs.length != 2) {
                 throw new IllegalArgumentException("Exactly 2 arguments required");

@@ -8,7 +8,7 @@ public class Counter {
         timeRemaining = cycleLength;
     }
     boolean step() {
-        timeRemaining =- 1;
+        timeRemaining -= 1;
         if (timeRemaining <= 0) {
             timeRemaining = cycleLength;
             return true;

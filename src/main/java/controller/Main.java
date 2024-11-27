@@ -2,6 +2,7 @@ package controller;
 
 import controller.parsers.EventParser;
 import controller.parsers.Arguments;
+import controller.parsers.ResultStringifier;
 import model.Car;
 import model.Direction;
 import model.JunctionManagingAlgorithm;
@@ -30,11 +31,11 @@ public class Main {
         JunctionManagingAlgorithm algorithm = JunctionManagingAlgorithmFactory.produceCyclic();
         var result = mainLoop(events, algorithm, arguments.isFlushing());
 
-        System.out.println("Converting the output to JSON.");
-        // TODO: implement
+        System.out.println("Converting the output to JSON string.");
+        var resultString = ResultStringifier.toString(result);
 
         System.out.printf("Saving the output to %s.%n", arguments.outputPath());
-        // TODO: implement
+        writeFile(arguments.outputPath(), resultString);
     }
 
     private static List<List<Car>> mainLoop(List<Map<String, String>> events,
@@ -52,6 +53,7 @@ public class Main {
             }
         }
         if (isFlushing) {
+            System.out.println("The main loop ended. Continuing until there are no cars left.");
             while (!junctionManagingAlgorithm.isEmpty()) {
                 result.add(junctionManagingAlgorithm.step());
             }
@@ -62,6 +64,14 @@ public class Main {
     private static String readFile(Path inputPath) {
         try {
             return Files.readString(inputPath, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static void writeFile(Path outputPath, String resultString) {
+        try {
+            Files.writeString(outputPath, resultString);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

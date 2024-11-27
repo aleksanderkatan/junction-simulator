@@ -12,6 +12,7 @@ public class RoadLight {
 
     public RoadLight() {
         state = RED;
+        stateQueue = new LinkedList<>();
     }
 
     public void step() {
@@ -37,7 +38,7 @@ public class RoadLight {
     }
 
     public void turnGreen() {
-        if (isChangeBlocked() || state == RED) {
+        if (isChangeBlocked() || state == GREEN) {
             return;
         }
         stateQueue = new LinkedList<>(Arrays.asList(RED_YELLOW, GREEN));

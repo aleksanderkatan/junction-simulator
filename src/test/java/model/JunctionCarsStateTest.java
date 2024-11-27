@@ -157,5 +157,24 @@ class JunctionCarsStateTest {
         assertEquals(List.of(car1), carsThatDrive);
     }
 
+    @Test
+    void isEmptyWhenEmptyReturnsTrue() {
+        var carsState = new JunctionCarsState();
+
+        var isEmpty = carsState.isEmpty();
+
+        assertTrue(isEmpty);
+    }
+
+    @Test
+    void isEmptyWhenNotEmptyReturnsFalse() {
+        var car1 = new Car("car1", NORTH, SOUTH);
+        var carsState = new JunctionCarsState();
+        carsState.addCar(car1);
+
+        var isEmpty = carsState.isEmpty();
+
+        assertFalse(isEmpty);
+    }
 
 }
