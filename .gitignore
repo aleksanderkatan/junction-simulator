@@ -1,3 +1,4 @@
 .gradle
 .idea
 build
+end_to_end_tests/*.out

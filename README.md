@@ -6,6 +6,10 @@ This Java app simulates car traffic at a junction controlled by traffic lights. 
 
 By default, the simulation is continued until no cars are left. This can be switched by including the `-f` option. The `-c` option switches the algorithm used from an intensity sensitive one to a static cyclic one.
 
+Running end-to-end tests:
+
+`python3 end_to_end_tests.py`
+
 ### Assumptions:
 - in a single step, at most one car from a single direction will drive through the junction,
 - cars avoid collisions,
