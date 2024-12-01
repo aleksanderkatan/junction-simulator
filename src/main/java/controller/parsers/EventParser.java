@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EventParser {
-    public static List<Map<String,String>> parseEvents(String jsonString) {
+    public static List<Map<String, String>> parseEvents(String jsonString) {
         var result = new ArrayList<Map<String, String>>();
 
         JSONObject jsonObject = new JSONObject(jsonString);

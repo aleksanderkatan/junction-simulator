@@ -32,13 +32,24 @@ class ArgumentsTest {
     }
 
     @Test
-    void parsesHeadOption() {
-        String[] args = {"-h", "input.txt", "output.txt"};
+    void defaultsToCorrectOptions() {
+        String[] args = {"input.txt", "output.txt"};
 
         Arguments arguments = Arguments.parseFromStringArr(args);
 
-        assertEquals(Path.of("input.txt"), arguments.inputPath());
-        assertEquals(Path.of("output.txt"), arguments.outputPath());
+        assertFalse(arguments.isHeaded());
+        assertFalse(arguments.isCyclic());
+        assertTrue(arguments.isFlushing());
+    }
+
+    @Test
+    void parsesOptions() {
+        String[] args = {"-h", "input.txt", "-c", "output.txt", "-f"};
+
+        Arguments arguments = Arguments.parseFromStringArr(args);
+
         assertTrue(arguments.isHeaded());
+        assertTrue(arguments.isCyclic());
+        assertFalse(arguments.isFlushing());
     }
 }

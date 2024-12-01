@@ -9,12 +9,12 @@ import static model.Direction.*;
 import static model.RoadLightColor.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class JunctionCarsStateTest {
+class CarsStateTest {
 
     @Test
     void carDrivesWhenGreen() {
         var car1 = new Car("car1", NORTH, EAST);
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
         carsState.addCar(car1);
         var lights = Map.of(
                 NORTH, GREEN,
@@ -31,7 +31,7 @@ class JunctionCarsStateTest {
     @Test
     void carIsRemovedFromQueueAfterDriving() {
         var car1 = new Car("car1", NORTH, SOUTH);
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
         carsState.addCar(car1);
         var lights = Map.of(
                 NORTH, GREEN,
@@ -48,7 +48,7 @@ class JunctionCarsStateTest {
     @Test
     void carStaysWhenRed() {
         var car1 = new Car("car1", NORTH, SOUTH);
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
         carsState.addCar(car1);
         var lights = Map.of(
                 NORTH, RED,
@@ -66,7 +66,7 @@ class JunctionCarsStateTest {
     void carsDriveForward() {
         var car1 = new Car("car1", NORTH, SOUTH);
         var car2 = new Car("car2", SOUTH, NORTH);
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
         carsState.addCar(car1);
         carsState.addCar(car2);
         var lights = Map.of(
@@ -85,7 +85,7 @@ class JunctionCarsStateTest {
     void carsDriveLeft() {
         var car1 = new Car("car1", NORTH, EAST);
         var car2 = new Car("car2", SOUTH, WEST);
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
         carsState.addCar(car1);
         carsState.addCar(car2);
         var lights = Map.of(
@@ -104,7 +104,7 @@ class JunctionCarsStateTest {
     void carsDriveRight() {
         var car1 = new Car("car1", NORTH, WEST);
         var car2 = new Car("car2", SOUTH, EAST);
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
         carsState.addCar(car1);
         carsState.addCar(car2);
         var lights = Map.of(
@@ -123,7 +123,7 @@ class JunctionCarsStateTest {
     void carsTurnBack() {
         var car1 = new Car("car1", NORTH, NORTH);
         var car2 = new Car("car2", SOUTH, SOUTH);
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
         carsState.addCar(car1);
         carsState.addCar(car2);
         var lights = Map.of(
@@ -142,7 +142,7 @@ class JunctionCarsStateTest {
     void carStaysWhenNoPrecedence() {
         var car1 = new Car("car1", NORTH, SOUTH);
         var car2 = new Car("car2", SOUTH, WEST);
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
         carsState.addCar(car1);
         carsState.addCar(car2);
         var lights = Map.of(
@@ -159,7 +159,7 @@ class JunctionCarsStateTest {
 
     @Test
     void isEmptyWhenEmptyReturnsTrue() {
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
 
         var isEmpty = carsState.isEmpty();
 
@@ -169,7 +169,7 @@ class JunctionCarsStateTest {
     @Test
     void isEmptyWhenNotEmptyReturnsFalse() {
         var car1 = new Car("car1", NORTH, SOUTH);
-        var carsState = new JunctionCarsState();
+        var carsState = new CarsState();
         carsState.addCar(car1);
 
         var isEmpty = carsState.isEmpty();

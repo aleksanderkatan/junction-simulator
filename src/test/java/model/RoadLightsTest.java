@@ -7,10 +7,10 @@ import static model.Direction.NORTH;
 import static model.RoadLightColor.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class JunctionRoadLightsTest {
+class RoadLightsTest {
     @Test
     void stepDoesNothingWhenNothingEnqueued() {
-        var state = new JunctionRoadLights();
+        var state = new RoadLights();
         var lights = state.getRoadLights();
 
         state.step();
@@ -21,7 +21,7 @@ class JunctionRoadLightsTest {
 
     @Test
     void northRotatesCorrectly() {
-        var state = new JunctionRoadLights();
+        var state = new RoadLights();
 
         var color0 = state.getRoadLights().get(NORTH);
         state.switchLights();
@@ -50,7 +50,7 @@ class JunctionRoadLightsTest {
 
     @Test
     void eastRotatesCorrectly() {
-        var state = new JunctionRoadLights();
+        var state = new RoadLights();
 
         var color0 = state.getRoadLights().get(EAST);
         state.switchLights(EAST);

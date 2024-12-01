@@ -1,7 +1,7 @@
 package controller;
 
-import controller.parsers.EventParser;
 import controller.parsers.Arguments;
+import controller.parsers.EventParser;
 import controller.parsers.ResultStringifier;
 import model.Car;
 import model.Direction;
@@ -28,7 +28,7 @@ public class Main {
         var events = EventParser.parseEvents(json);
 
         System.out.println("Entering the main loop.");
-        JunctionManagingAlgorithm algorithm = JunctionManagingAlgorithmFactory.produceIntensityOptimized();
+        JunctionManagingAlgorithm algorithm = JunctionManagingAlgorithmFactory.produce(arguments.isCyclic());
         var result = mainLoop(events, algorithm, arguments.isFlushing());
 
         System.out.println("Converting the output to JSON string.");
@@ -41,7 +41,7 @@ public class Main {
     private static List<List<Car>> mainLoop(List<Map<String, String>> events,
                                             JunctionManagingAlgorithm junctionManagingAlgorithm, boolean isFlushing) {
         List<List<Car>> result = new ArrayList<>();
-        for (var event: events) {
+        for (var event : events) {
             switch (event.get("type")) {
                 case "addVehicle" -> junctionManagingAlgorithm.addVehicle(new Car(
                         event.get("vehicleId"),

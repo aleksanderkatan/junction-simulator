@@ -4,10 +4,10 @@ import java.util.*;
 
 import static model.Direction.*;
 
-public class JunctionCarsState {
+public class CarsState {
     private final Map<Direction, Queue<Car>> carsWaiting;
 
-    public JunctionCarsState() {
+    public CarsState() {
         carsWaiting = new HashMap<>();
         for (var direction : Direction.values()) {
             carsWaiting.put(direction, new LinkedList<>());
@@ -49,7 +49,8 @@ public class JunctionCarsState {
         for (Direction direction : Direction.values()) {
             if (!roadLights.get(direction).allowsDriving()) {
                 continue;
-            }            var currentQueue = carsWaiting.get(direction);
+            }
+            var currentQueue = carsWaiting.get(direction);
             if (currentQueue.isEmpty()) {
                 continue;
             }

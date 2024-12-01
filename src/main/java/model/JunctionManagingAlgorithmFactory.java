@@ -1,24 +1,32 @@
 package model;
 
-import model.cyclic.CyclicCounter;
 import model.cyclic.CyclicAlgorithm;
+import model.cyclic.CyclicCounter;
 import model.intensityOptimized.DoubleIterationCounter;
 import model.intensityOptimized.IntensityOptimizedAlgorithm;
 import model.intensityOptimized.JunctionRoadLightsStateWrapper;
 
 public class JunctionManagingAlgorithmFactory {
-    public static CyclicAlgorithm produceCyclic() {
-        var roadLights = new JunctionRoadLights();
-        var cars = new JunctionCarsState();
+    private static CyclicAlgorithm produceCyclic() {
+        var roadLights = new RoadLights();
+        var cars = new CarsState();
         var cyclicCounter = new CyclicCounter(5);
         return new CyclicAlgorithm(roadLights, cars, cyclicCounter);
     }
 
-    public static IntensityOptimizedAlgorithm produceIntensityOptimized() {
-        var roadLights = new JunctionRoadLights();
+    private static IntensityOptimizedAlgorithm produceIntensityOptimized() {
+        var roadLights = new RoadLights();
         var counter = new DoubleIterationCounter(0, 0);
         var wrapper = new JunctionRoadLightsStateWrapper(roadLights, counter);
-        var cars = new JunctionCarsState();
+        var cars = new CarsState();
         return new IntensityOptimizedAlgorithm(wrapper, cars);
+    }
+
+    public static JunctionManagingAlgorithm produce(boolean cyclic) {
+        if (cyclic) {
+            return produceCyclic();
+        } else {
+            return produceIntensityOptimized();
+        }
     }
 }

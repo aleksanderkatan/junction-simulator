@@ -1,14 +1,12 @@
 package model.intensityOptimized;
 
 import model.Direction;
-import model.JunctionCarsState;
+import model.CarsState;
 import model.RoadLightColor;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class IntensityOptimizedAlgorithmTest {
@@ -18,7 +16,7 @@ class IntensityOptimizedAlgorithmTest {
     void whenNoCarsOnEWThenEnqueuesNothing() {
         var wrapper = mock(JunctionRoadLightsStateWrapper.class);
         when(wrapper.needsEnqueueing()).thenReturn(true);
-        var cars = mock(JunctionCarsState.class);
+        var cars = mock(CarsState.class);
         when(cars.northSouthCarsCount()).thenReturn(3);
         when(cars.eastWestCarsCount()).thenReturn(0);
         var algorithm = new IntensityOptimizedAlgorithm(wrapper, cars);
@@ -32,7 +30,7 @@ class IntensityOptimizedAlgorithmTest {
     void whenNoCarsOnSTThenEnqueuesNothing() {
         var wrapper = mock(JunctionRoadLightsStateWrapper.class);
         when(wrapper.needsEnqueueing()).thenReturn(true);
-        var cars = mock(JunctionCarsState.class);
+        var cars = mock(CarsState.class);
         when(cars.northSouthCarsCount()).thenReturn(0);
         when(cars.eastWestCarsCount()).thenReturn(3);
         var algorithm = new IntensityOptimizedAlgorithm(wrapper, cars);
@@ -46,7 +44,7 @@ class IntensityOptimizedAlgorithmTest {
     void enqueuesAtMost22Steps() {
         var wrapper = mock(JunctionRoadLightsStateWrapper.class);
         when(wrapper.needsEnqueueing()).thenReturn(true);
-        var cars = mock(JunctionCarsState.class);
+        var cars = mock(CarsState.class);
         when(cars.northSouthCarsCount()).thenReturn(100);
         when(cars.eastWestCarsCount()).thenReturn(1000000);
         var algorithm = new IntensityOptimizedAlgorithm(wrapper, cars);
@@ -60,7 +58,7 @@ class IntensityOptimizedAlgorithmTest {
     void enqueuesAtLeast5Steps() {
         var wrapper = mock(JunctionRoadLightsStateWrapper.class);
         when(wrapper.needsEnqueueing()).thenReturn(true);
-        var cars = mock(JunctionCarsState.class);
+        var cars = mock(CarsState.class);
         when(cars.northSouthCarsCount()).thenReturn(1);
         when(cars.eastWestCarsCount()).thenReturn(2);
         var algorithm = new IntensityOptimizedAlgorithm(wrapper, cars);
@@ -74,7 +72,7 @@ class IntensityOptimizedAlgorithmTest {
     void enqueuesForProportionallyManySteps() {
         var wrapper = mock(JunctionRoadLightsStateWrapper.class);
         when(wrapper.needsEnqueueing()).thenReturn(true);
-        var cars = mock(JunctionCarsState.class);
+        var cars = mock(CarsState.class);
         when(cars.northSouthCarsCount()).thenReturn(20);
         when(cars.eastWestCarsCount()).thenReturn(40);
         var algorithm = new IntensityOptimizedAlgorithm(wrapper, cars);
@@ -88,7 +86,7 @@ class IntensityOptimizedAlgorithmTest {
     void doesNotEnqueueWhenNotNeeded() {
         var wrapper = mock(JunctionRoadLightsStateWrapper.class);
         when(wrapper.needsEnqueueing()).thenReturn(false);
-        var cars = mock(JunctionCarsState.class);
+        var cars = mock(CarsState.class);
         var algorithm = new IntensityOptimizedAlgorithm(wrapper, cars);
 
         algorithm.step();
@@ -101,7 +99,7 @@ class IntensityOptimizedAlgorithmTest {
         var wrapper = mock(JunctionRoadLightsStateWrapper.class);
         var mapToReturn = new HashMap<Direction, RoadLightColor>();
         when(wrapper.getRoadLights()).thenReturn(mapToReturn);
-        var cars = mock(JunctionCarsState.class);
+        var cars = mock(CarsState.class);
         var algorithm = new IntensityOptimizedAlgorithm(wrapper, cars);
 
         algorithm.step();

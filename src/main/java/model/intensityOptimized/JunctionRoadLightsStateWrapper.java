@@ -1,16 +1,16 @@
 package model.intensityOptimized;
 
 import model.Direction;
-import model.JunctionRoadLights;
 import model.RoadLightColor;
+import model.RoadLights;
 
 import java.util.Map;
 
 public class JunctionRoadLightsStateWrapper {
     private final DoubleIterationCounter counter;
-    private final JunctionRoadLights roadLights;
+    private final RoadLights roadLights;
 
-    public JunctionRoadLightsStateWrapper(JunctionRoadLights roadLights, DoubleIterationCounter counter) {
+    public JunctionRoadLightsStateWrapper(RoadLights roadLights, DoubleIterationCounter counter) {
         this.roadLights = roadLights;
         this.counter = counter;
     }

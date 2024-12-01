@@ -4,7 +4,7 @@ This Java app simulates car traffic at a junction controlled by traffic lights. 
 
 `./run.sh <input_file> <output_file>`
 
-By default, the simulation is continued until no cars are left. This can be switched by including the `-f` option.
+By default, the simulation is continued until no cars are left. This can be switched by including the `-f` option. The `-c` option switches the algorithm used from an intensity sensitive one to a static cyclic one.
 
 ### Assumptions:
 - in a single step, at most one car from a single direction will drive through the junction,

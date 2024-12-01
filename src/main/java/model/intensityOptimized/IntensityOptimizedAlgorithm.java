@@ -1,15 +1,17 @@
 package model.intensityOptimized;
 
-import model.*;
+import model.Car;
+import model.CarsState;
+import model.JunctionManagingAlgorithm;
 
 import java.util.List;
 
 public class IntensityOptimizedAlgorithm implements JunctionManagingAlgorithm {
 
     private final JunctionRoadLightsStateWrapper roadLights;
-    private final JunctionCarsState cars;
+    private final CarsState cars;
 
-    public IntensityOptimizedAlgorithm(JunctionRoadLightsStateWrapper roadLights, JunctionCarsState cars) {
+    public IntensityOptimizedAlgorithm(JunctionRoadLightsStateWrapper roadLights, CarsState cars) {
         this.roadLights = roadLights;
         this.cars = cars;
     }
@@ -43,11 +45,11 @@ public class IntensityOptimizedAlgorithm implements JunctionManagingAlgorithm {
         int eastCars = cars.eastWestCarsCount();
 
         // the (2+) segment incorporates the time required for switching lights
-        int northTime = northCars == 0 ? 0 : 2+Math.min(Math.max(3, northCars / 3), 20);
-        int eastTime = eastCars == 0 ? 0 : 2+Math.min(Math.max(3, eastCars / 3), 20);
+        int northTime = northCars == 0 ? 0 : 2 + Math.min(Math.max(3, northCars / 3), 20);
+        int eastTime = eastCars == 0 ? 0 : 2 + Math.min(Math.max(3, eastCars / 3), 20);
 
         System.out.printf("North/South cars waiting:%d, East/West cars waiting: %d. " +
-                "Queueing North/South lights for %d steps, then East/West lights for %d steps.%n",
+                        "Queueing North/South lights for %d steps, then East/West lights for %d steps.%n",
                 northCars, eastCars, northTime, eastTime);
 
         roadLights.enqueue(northTime, eastTime);

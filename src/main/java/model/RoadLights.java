@@ -8,7 +8,7 @@ import static model.Direction.*;
 import static model.RoadLightColor.*;
 
 
-public class JunctionRoadLights {
+public class RoadLights {
     static final List<Map<Direction, RoadLightColor>> lightCycles = List.of(
             Map.of(NORTH, GREEN,        EAST, RED,          SOUTH, GREEN,       WEST, RED),     // may last multiple steps
             Map.of(NORTH, YELLOW,       EAST, RED,          SOUTH, YELLOW,      WEST, RED),
@@ -22,7 +22,8 @@ public class JunctionRoadLights {
     private int currentState = 0;
     private boolean isChanging = false;
 
-    public JunctionRoadLights() {}
+    public RoadLights() {
+    }
 
     public void step() {
         if (isChanging) {
@@ -34,7 +35,7 @@ public class JunctionRoadLights {
     }
 
     /**
-     Enqueue a light change if any is not currently taking place.
+     * Enqueue a light change if any is not currently taking place.
      */
     public void switchLights() {
         if (isChanging) {
@@ -44,9 +45,10 @@ public class JunctionRoadLights {
     }
 
     /**
-     Enqueue light change so that in the following steps, the selected light and the light opposite becomes GREEN.
-     Does nothing if any change is currently occurring, or the selected lights are already GREEN.
-     @param direction a direction to have lights changed to GREEN
+     * Enqueue light change so that in the following steps, the selected light and the light opposite becomes GREEN.
+     * Does nothing if any change is currently occurring, or the selected lights are already GREEN.
+     *
+     * @param direction a direction to have lights changed to GREEN
      */
     public void switchLights(Direction direction) {
         if (isChanging) {
