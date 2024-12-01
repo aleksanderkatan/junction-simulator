@@ -14,10 +14,6 @@ public class JunctionCarsState {
         }
     }
 
-    public Map<Direction, Queue<Car>> getCarsWaiting() {
-        return carsWaiting;
-    }
-
     public void addCar(Car car) {
         carsWaiting.get(car.start()).add(car);
     }
@@ -33,6 +29,18 @@ public class JunctionCarsState {
             }
         }
         return carsThatDrive;
+    }
+
+    public int northSouthCarsCount() {
+        return carsWaiting.get(NORTH).size() + carsWaiting.get(SOUTH).size();
+    }
+
+    public int eastWestCarsCount() {
+        return carsWaiting.get(EAST).size() + carsWaiting.get(WEST).size();
+    }
+
+    public boolean isEmpty() {
+        return northSouthCarsCount() + eastWestCarsCount() == 0;
     }
 
     private List<Car> findCarsThatDrive(Map<Direction, RoadLightColor> roadLights) {
@@ -77,17 +85,5 @@ public class JunctionCarsState {
         }
 
         return carsThatDrive;
-    }
-
-    public int northSouthCarsCount() {
-        return carsWaiting.get(NORTH).size() + carsWaiting.get(SOUTH).size();
-    }
-
-    public int eastWestCarsCount() {
-        return carsWaiting.get(EAST).size() + carsWaiting.get(WEST).size();
-    }
-
-    public boolean isEmpty() {
-        return northSouthCarsCount() + eastWestCarsCount() == 0;
     }
 }

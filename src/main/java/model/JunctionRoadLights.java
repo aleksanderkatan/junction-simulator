@@ -33,6 +33,9 @@ public class JunctionRoadLights {
         }
     }
 
+    /**
+     Enqueue a light change if any is not currently taking place.
+     */
     public void switchLights() {
         if (isChanging) {
             return;
@@ -40,6 +43,11 @@ public class JunctionRoadLights {
         isChanging = true;
     }
 
+    /**
+     Enqueue light change so that in the following steps, the selected light and the light opposite becomes GREEN.
+     Does nothing if any change is currently occurring, or the selected lights are already GREEN.
+     @param direction a direction to have lights changed to GREEN
+     */
     public void switchLights(Direction direction) {
         if (isChanging) {
             return;

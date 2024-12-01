@@ -13,8 +13,9 @@ By default, the simulation is continued until no cars are left. This can be swit
 
 
 ### Notes:
+- addVehicle and step are preformed in O(1) time,
 - the simulation starts with South/North lights GREEN, and East/West lights RED,
-- it takes 2 steps for lights to switch from RED to GREEN and vice versa, therefore if the simulation states that it queues a light to be green for `n` steps, only `n-2` cars will pass,
-- if the simulation queues a light for 0 steps, no changes occur,
+- it takes 2 steps for lights to switch from RED to GREEN and vice versa, therefore if the simulation states that it queues a light to be GREEN for `n` steps, only up to `n-2` cars may pass,
+- if there are no cars on either N/S or E/W line, that line is enqueued for 0 steps (no color change occurs),
 - the number of steps to queue each light is chosen based on how many cars are in the queue (`2+min(max(3, cars / 3), 20)`).
 

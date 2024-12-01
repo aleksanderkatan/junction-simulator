@@ -10,5 +10,5 @@ public interface JunctionManagingAlgorithm {
 
     List<Car> step();
 
-    void addVehicle(String vehicleId, Direction startRoad, Direction endRoad);
+    void addVehicle(Car car);
 }

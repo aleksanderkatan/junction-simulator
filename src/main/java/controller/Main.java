@@ -43,11 +43,11 @@ public class Main {
         List<List<Car>> result = new ArrayList<>();
         for (var event: events) {
             switch (event.get("type")) {
-                case "addVehicle" -> junctionManagingAlgorithm.addVehicle(
+                case "addVehicle" -> junctionManagingAlgorithm.addVehicle(new Car(
                         event.get("vehicleId"),
                         Direction.fromString(event.get("startRoad")),
                         Direction.fromString(event.get("endRoad"))
-                );
+                ));
                 case "step" -> result.add(junctionManagingAlgorithm.step());
                 default -> System.out.printf("Unknown event type: %s %n", event.get("type"));
             }

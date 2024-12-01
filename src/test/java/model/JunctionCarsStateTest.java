@@ -42,7 +42,7 @@ class JunctionCarsStateTest {
 
         carsState.step(lights);
 
-        assertEquals(0, carsState.getCarsWaiting().get(NORTH).size());
+        assertTrue(carsState.isEmpty());
     }
 
     @Test

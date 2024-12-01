@@ -32,8 +32,8 @@ public class IntensityOptimizedAlgorithm implements JunctionManagingAlgorithm {
     }
 
     @Override
-    public void addVehicle(String vehicleId, Direction startRoad, Direction endRoad) {
-        cars.addCar(new Car(vehicleId, startRoad, endRoad));
+    public void addVehicle(Car car) {
+        cars.addCar(car);
     }
 
     private void calculateAndEnqueueLights() {
